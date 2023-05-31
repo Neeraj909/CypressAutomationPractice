@@ -9,7 +9,19 @@ describe('My Second Test Suite',function(){
        //cy.get('input[type="checkbox"]').check()
        // select based on index
        cy.get('input[type="checkbox"]').check(['option1','option2'])
-       
+
+       //handle static dropdown
+       cy.get('select').select('Option3').should('have.value','option3')
+
+       //handle dynamic dropdown
+       cy.get('#autocomplete').type('ind')
+       cy.get('.ui-menu-item div').each(($e1, index, $list) =>{
+
+        if($e1.text()=='India'){
+            cy.wrap($e1).click()
+        }
+       })
+
 
 })
 })
