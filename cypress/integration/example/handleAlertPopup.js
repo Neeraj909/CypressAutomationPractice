@@ -1,3 +1,4 @@
+import 'cypress-iframe'
 describe('Handle alert popup',function(){
     it('andle alert popup Test cases',function(){
        //cypress auto accpet popup
@@ -15,7 +16,31 @@ describe('Handle alert popup',function(){
        })
 
        //handle new tab 
-       cy.get('#opentab')
+       //cy.get('#opentab').invoke('removeAttr','target').click()
+
+       //cy.url().should('include','qaclickacademy')
+
+       //cy.go('back')
+
+       //handle child tab without target attribute
+    //    cy.get('#opentab').then(function(el){
+    //     const url=el.prop('href')
+    //     cy.visit(url)
+    //     //help of origin method can interact  to new tab locaotr 
+    //     cy.origin(url,() =>{
+    //         cy.get(".navbar-nav.ml-auto a[href*='about']").click()
+    //         //cy.url.should('include','about')
+    //     })
+    //    })
+       
+///handle frames
+      //first install iframe library 
+      //then import iframe
+
+     cy.frameLoaded('#courses-iframe')
+     cy.iframe().find(".navigation.clearfix a[href*='mentorship']").eq(0).click()
+
+
 
     })
 })

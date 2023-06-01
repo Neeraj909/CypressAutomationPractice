@@ -23,5 +23,27 @@ describe('My Second Test Suite',function(){
        })
 
        cy.get('#autocomplete').should('have.value','India')
+    
+       //handle web table
+       cy.get('.left-align #product tbody td:nth-child(2)').each(($e1,index,$list)=>{
+        const text=$e1.text()
+        if(text.includes('Python')){
+            //for sibling element process have to use next and then method 
+            cy.get('.left-align #product tbody td:nth-child(2)').eq(index).next().then(function(price){
+                const priceText=price.text()
+                expect(priceText).to.equal('25')
+            })
+        }
+       })
+    // handle mouse hover
+    // invoke(show) method will show all hiden element
+    cy.get('.mouse-hover-content').invoke('show')
+    //cy.contains('Top').click({force: true})
+    cy.contains('Top').click()
+    cy.url().should('include','top')
+
+    
+
+
 })
 })
