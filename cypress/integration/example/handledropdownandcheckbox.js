@@ -22,6 +22,6 @@ describe('My Second Test Suite',function(){
         }
        })
 
-
+       cy.get('#autocomplete').should('have.value','India')
 })
 })
